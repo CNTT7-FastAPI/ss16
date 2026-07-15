@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends
+# pyrefly: ignore [missing-import]
 from sqlalchemy.orm import Session
 from database import get_db
 # from app.services.student_service import get_all_student
@@ -13,8 +14,5 @@ student_router = APIRouter(
 
 #  API để get students
 @student_router.get("/")
-def get_all_student(db: Session = Depends(get_db)):
-    return {
-        "message": "Lấy dữ liệu thành công",
-        "data": student_service.get_all_student(db)
-    }
+def get_all_student(offset: int = 0, limit: int = 3, db: Session = Depends(get_db)):
+    return student_service.get_all_student(db, offset, limit)
