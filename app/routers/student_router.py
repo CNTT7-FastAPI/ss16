@@ -16,3 +16,4 @@ student_router = APIRouter(
 @student_router.get("/")
 def get_all_student(offset: int = 0, limit: int = 3, db: Session = Depends(get_db)):
     return student_service.get_all_student(db, offset, limit)
+# git rm -r --cached
